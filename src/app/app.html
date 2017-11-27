@@ -1,0 +1,25 @@
+<ion-menu *ngIf="isAuthenticated()"  [content]="content">
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Pages</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+
+    <p>
+      <h2 *ngIf="!isAuthenticated()" >You need to be logged to navigate!</h2>
+      <h2 *ngIf="isAuthenticated()" text-center>User is logged in!</h2>
+      <h2 *ngIf="isAuthenticated()" text-center>User is not logged in!</h2>
+      <button *ngIf="isAuthenticated()" (click)="logout()">Logout</button>
+    <ion-list *ngIf="isAuthenticated()" >
+      <button ion-item  *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>
